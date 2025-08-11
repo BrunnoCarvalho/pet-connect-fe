@@ -1,0 +1,1 @@
+entidades puras (ex: usuário, produto)

@@ -1,0 +1,1 @@
+Imagens, ícones, fontes e outros recursos estáticos
