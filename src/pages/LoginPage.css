@@ -1,0 +1,11 @@
+.loginContainer {
+    border: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-area: 'imageBackground loginPage';
+}
+
+div {
+    border: 1px solid black;
+}
+
