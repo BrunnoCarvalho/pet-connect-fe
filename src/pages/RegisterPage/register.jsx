@@ -12,7 +12,19 @@ import { useCep } from "../../features/userRegistration/model/useCep";
 
 export function RegisterPage() {
 
-  const { userData, confirmFields, handleChange, handleConfirmChange, handleAddressChange, submitForm, loading, error } = useUserRegistration()
+  const {
+    userData,
+    confirmFields,
+    handleChange,
+    handleAddressChange,
+    handleConfirmChange,
+    submitForm,
+    loading,
+    validationErrors,
+    submissionError
+  }=useUserRegistration()
+
+  
 
   const { fetchAddress, loading: cepLoading, error: cepError } = useCep(handleAddressChange)
 
@@ -27,7 +39,7 @@ export function RegisterPage() {
 
   return (
     <form onSubmit={(e) => submitForm(e, simulatedType)}>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {submissionError && <p style={{ color: "red" }}>{submissionError}</p>}
 
       <div>
         {/* Lado esquerdo */}
@@ -47,9 +59,9 @@ export function RegisterPage() {
 
               <label>
                 CPF
-                <input name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} />
+                <input name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} maxLength="14"/>
               </label>
-
+                 {validationErrors.cpfOrCnpj && <p style={{ color: "red" }}>{validationErrors.cpfOrCnpj}</p>}
               <label>
                 Endereço
                 <input name="address.street" value={userData.address.street} onChange={(e) => handleAddressChange("street", e.target.value)}
