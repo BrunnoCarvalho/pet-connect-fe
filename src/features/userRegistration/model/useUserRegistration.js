@@ -28,14 +28,14 @@ export function useUserRegistration() {
     const [userData, setUserData] = useState(User)
     const [confirmFields, setConfirmFields] = useState(initialConfirmatinFields)
     const [loading, setLoading] = useState(false)
-   const [validationErrors, setValidationErrors] = useState({})
-    const [submissionError, setSubmissionError] = useState(null);
-   useEffect(()=>{
-    if(userData.cpfOrCnpj.length>0){
-        const errors = validateUser(userData,confirmFields)
+   const [validationErrors, setValidationErrors] = useState({})//validationErrors (um objeto): Cuida apenas dos erros de validação.
+    const [submissionError, setSubmissionError] = useState(null);//submissionError (uma string): Cuida apenas dos erros de submissão.
+  useEffect(() => {
+        const errors = validateUser(userData, confirmFields)
         setValidationErrors(errors)
+
     }
-   },[userData.cpfOrCnpj, userData,confirmFields])
+, [ userData, confirmFields]); 
 
     const handleChange = (event) => {
 
@@ -47,14 +47,6 @@ export function useUserRegistration() {
             value = numericValue.slice(0,14)
         }
             setUserData(prev => ({ ...prev, [name]: value }))  //Função passada como callback. Prev = estado atual do objeto. O corpo da função cria um novo objeto, sobrescrevendo apenas o que mudou. Esse novo objeto, vira o novo estado do form.
-
-            if(validationErrors[name]){
-                setValidationErrors(prev=>{
-                    const newErrors={...prev}
-                    delete newErrors[name]
-                    return newErrors
-                })
-            }
 
     }
 
@@ -90,7 +82,7 @@ export function useUserRegistration() {
             setUserData(User)
             setConfirmFields(initialConfirmatinFields)
         } catch (err) {
-             setSubmissionError("Erro no cadastro do usuário. Tente novamente."); 
+            setSubmissionError("Erro no cadastro do usuário. Tente novamente."); 
         } finally {
             setLoading(false)
         }

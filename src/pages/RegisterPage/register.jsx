@@ -1,185 +1,63 @@
+// src/pages/RegisterPage/register.jsx
+
 import { useEffect } from "react";
 import { useUserRegistration } from "../../features/userRegistration/model/useUserRegistration";
 import { useCep } from "../../features/userRegistration/model/useCep";
 
-/**
- * Página de registro de usuários.
- * Renderiza o formulário de cadastro, utiliza hooks para gerenciar estado, validação e busca de CEP.
- *  O formulário adapta os campos exibidos conforme o tipo de usuário (Tutor, ONG, Clínica).
- * @component
- * @returns {JSX.Element} Formulário de registro de usuário
- */
+// Importando os componentes de UI
+import { UserSpecificFields } from "../../features/userRegistration/ui/UserSpecificFields";
+import { AddressFields } from "../../features/userRegistration/ui/AddressFields";
+import { AuthFields } from "../../features/userRegistration/ui/AuthFields";
 
 export function RegisterPage() {
-
-  const {
-    userData,
-    confirmFields,
-    handleChange,
-    handleAddressChange,
-    handleConfirmChange,
-    submitForm,
-    loading,
-    validationErrors,
-    submissionError
-  }=useUserRegistration()
-
+  const registration = useUserRegistration();
+  const { fetchAddress, loading: cepLoading, error: cepError } = useCep(registration.handleAddressChange);
   
-
-  const { fetchAddress, loading: cepLoading, error: cepError } = useCep(handleAddressChange)
-
-  const simulatedType = "ong"; //Variável temporária simulando valor do modal
+  const simulatedType = "ong"; // Esta variável controlará qual formulário é exibido
 
   useEffect(() => {
-    if (userData.address.cep.length === 8) {
-      fetchAddress(userData.address.cep)
+    // A busca de CEP só é relevante para organizações neste modelo
+    if ((simulatedType === 'ong' || simulatedType === 'clinic') && registration.userData.address.cep.length === 8) {
+      fetchAddress(registration.userData.address.cep);
     }
-  }, [userData.address.cep])
-
+  }, [registration.userData.address.cep, fetchAddress, simulatedType]);
 
   return (
-    <form onSubmit={(e) => submitForm(e, simulatedType)}>
-      {submissionError && <p style={{ color: "red" }}>{submissionError}</p>}
+    <form onSubmit={(e) => registration.submitForm(e, simulatedType)}>
+      {registration.submissionError && <p style={{ color: "red" }}>{registration.submissionError}</p>}
 
-      <div>
-        {/* Lado esquerdo */}
+      {/* Usamos um layout simples de duas colunas para organizar os campos */}
+      <div style={{ display: 'flex', gap: '2rem' }}>
+        
+        {/* Coluna da Esquerda: Campos de identificação */}
         <div>
-          {simulatedType === "tutor" && (
-            <>
-              <label>
-                Nome
-                <input name="name" value={userData.name} onChange={handleChange} />
-              </label>
-
-              <label>
-                Telefone
-                <input type="tel" name="phone" placeholder="(51) 9999-9999" value={userData.phone} onChange={handleChange}
-                />
-              </label>
-
-              <label>
-                CPF
-                <input name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} maxLength="14"/>
-              </label>
-                 {validationErrors.cpfOrCnpj && <p style={{ color: "red" }}>{validationErrors.cpfOrCnpj}</p>}
-              <label>
-                Endereço
-                <input name="address.street" value={userData.address.street} onChange={(e) => handleAddressChange("street", e.target.value)}
-                />
-              </label>
-
-              <label>
-                Cidade
-                <input name="address.city" value={userData.address.city} onChange={(e) => handleAddressChange("city", e.target.value)}
-                />
-              </label>
-
-              <label>
-                E-mail
-                <input type="email" name="email" value={userData.email} onChange={handleChange} />
-              </label>
-
-              <label>
-                Senha
-                <input type="password" name="password" value={userData.password} onChange={handleChange} />
-              </label>
-            </>
-          )}
-
-          {(simulatedType === "ong" || simulatedType === "clinic") && (
-            <>
-              <label>
-                {simulatedType === "ong" ? "Nome da ONG" : "Nome da Clínica"}
-                <input name="name" value={userData.name} onChange={handleChange} />
-              </label>
-
-              <label>
-                CNPJ
-                <input name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} />
-              </label>
-
-              <label>
-                Data de Fundação
-                <input type="date" name="birthOrFoundationDate" value={userData.birthOrFoundationDate} onChange={handleChange}/>
-              </label>
-
-              <label>
-                Telefone
-                <input type="tel" name="phone" placeholder="(51) 9999-9999" value={userData.phone} onChange={handleChange} />
-              </label>
-
-              <label>
-                Endereço
-                <input name="address.street" value={userData.address.street} onChange={(e) => handleAddressChange("street", e.target.value)}/>
-              </label>
-
-              <label>
-                Cidade
-                <input name="address.city" value={userData.address.city} onChange={(e) => handleAddressChange("city", e.target.value)}/>
-              </label>
-
-              <label>
-                E-mail
-                <input type="email" name="email" value={userData.email} onChange={handleChange} />
-              </label>
-
-              <label>
-                Senha
-                <input type="password" name="password" value={userData.password} onChange={handleChange} />
-              </label>
-            </>
-          )}
+          <UserSpecificFields 
+            userType={simulatedType}
+            userData={registration.userData}
+            handleChange={registration.handleChange}
+            validationErrors={registration.validationErrors}
+          />
         </div>
 
-        {/* Lado direito */}
+        {/* Coluna da Direita: Endereço e Autenticação */}
         <div>
-          {simulatedType === "tutor" && (
-            <>
-              <label>
-                Sobrenome
-                <input name="lastName" value={userData.lastName} onChange={handleChange} />
-              </label>
-
-              <label>
-                Data de Nascimento
-                <input type="date" name="birthOrFoundationDate" value={userData.birthOrFoundationDate} onChange={handleChange} />
-              </label>
-            </>
-          )}
-
-          {(simulatedType === "ong" || simulatedType === "clinic") && (
-            <>
-              <label>
-                CEP
-                <input name="address.cep" value={userData.address.cep} onChange={(e) => handleAddressChange("cep", e.target.value)} />
-              </label>
-            </>
-          )}
-
-          <label>
-            Bairro
-            <input name="address.neighborhood" value={userData.address.neighborhood} onChange={(e) => handleAddressChange("neighborhood", e.target.value)} />
-          </label>
-
-          <label>
-            UF
-            <input name="address.uf" value={userData.address.uf} onChange={(e) => handleAddressChange("uf", e.target.value)} />
-          </label>
-
-          <label>
-            Confirmação de E-mail
-            <input type="email" name="confirmEmail" value={confirmFields.confirmEmail} onChange={handleConfirmChange} />
-          </label>
-
-          <label>
-            Confirmação de Senha
-            <input type="password" name="confirmPassword" value={confirmFields.confirmPassword} onChange={handleConfirmChange} />
-          </label>
+          <AddressFields 
+            userType={simulatedType}
+            userData={registration.userData}
+            handleAddressChange={registration.handleAddressChange}
+          />
+          <AuthFields 
+            userData={registration.userData}
+            confirmFields={registration.confirmFields}
+            handleChange={registration.handleChange}
+            handleConfirmChange={registration.handleConfirmChange}
+            validationErrors={registration.validationErrors}
+          />
         </div>
       </div>
 
-      <button type="submit" disabled={loading || cepLoading}>
-        {loading ? "Enviando..." : "Cadastrar"}
+      <button type="submit" disabled={registration.loading || cepLoading}>
+        {registration.loading ? "Enviando..." : "Cadastrar"}
       </button>
 
       {cepError && <p style={{ color: "red" }}>{cepError}</p>}

@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.11.0",
     "cpf-cnpj-validator": "^1.0.3",
+    "password-validator": "^5.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
