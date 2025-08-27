@@ -1,6 +1,4 @@
 // src/pages/RegisterPage/register.jsx
-
-import { useEffect } from "react";
 import { useUserRegistration } from "../../features/userRegistration/model/useUserRegistration";
 import { useCep } from "../../features/userRegistration/model/useCep";
 
@@ -11,16 +9,15 @@ import { AuthFields } from "../../features/userRegistration/ui/AuthFields";
 
 export function RegisterPage() {
   const registration = useUserRegistration();
-  const { fetchAddress, loading: cepLoading, error: cepError } = useCep(registration.handleAddressChange);
+  const cepToFetch = registration.userData.address.cep.replace(/\D/g, '');
+  // 2. Passamos o CEP e o callback para o hook.
+  const { loading: cepLoading, error: cepError } = useCep(cepToFetch, registration.handleFullAddressUpdate);
   
-  const simulatedType = "ong"; // Esta variável controlará qual formulário é exibido
 
-  useEffect(() => {
-    // A busca de CEP só é relevante para organizações neste modelo
-    if ((simulatedType === 'ong' || simulatedType === 'clinic') && registration.userData.address.cep.length === 8) {
-      fetchAddress(registration.userData.address.cep);
-    }
-  }, [registration.userData.address.cep, fetchAddress, simulatedType]);
+  
+  const simulatedType = "tutor"; // Esta variável controlará qual formulário é exibido
+
+
 
   return (
     <form onSubmit={(e) => registration.submitForm(e, simulatedType)}>
@@ -57,7 +54,7 @@ export function RegisterPage() {
       </div>
 
       <button type="submit" disabled={registration.loading || cepLoading}>
-        {registration.loading ? "Enviando..." : "Cadastrar"}
+        {registration.loading || cepLoading ? "Carregando..." : "Cadastrar"}
       </button>
 
       {cepError && <p style={{ color: "red" }}>{cepError}</p>}

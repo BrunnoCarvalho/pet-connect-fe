@@ -33,6 +33,7 @@ export function UserSpecificFields({ userType, userData, handleChange, validatio
         Telefone
         <input type="tel" name="phone" placeholder="(51) 9999-9999" value={userData.phone} onChange={handleChange} />
       </label>
+       {validationErrors.phone && <p style={{ color: "red" }}>{validationErrors.phone}</p>}
     </>
   );
 }
