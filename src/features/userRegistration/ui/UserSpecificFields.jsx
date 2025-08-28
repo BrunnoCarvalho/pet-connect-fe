@@ -1,39 +1,41 @@
-// src/features/userRegistration/ui/UserSpecificFields.jsx
+import cn from 'classnames';
+import styles from '../../../pages/RegisterPage/RegisterPage.module.css';
 
 export function UserSpecificFields({ userType, userData, handleChange, validationErrors }) {
   const isTutor = userType === 'tutor';
 
   return (
     <>
-      <label>
-        {isTutor ? "Nome" : (userType === "ong" ? "Nome da ONG" : "Nome da Clínica")}
-        <input name="name" value={userData.name} onChange={handleChange} />
-      </label>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>{isTutor ? "Nome" : (userType === "ong" ? "Nome da ONG" : "Nome da Clínica")}</label>
+        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.name })} name="name" value={userData.name} onChange={handleChange} />
+        {validationErrors.name && <p className={styles.errorMessage}>{validationErrors.name}</p>}
+      </div>
 
       {isTutor && (
-        <label>
-          Sobrenome
-          <input name="lastname" value={userData.lastname} onChange={handleChange} />
-        </label>
+        <div className={styles.formGroup}>
+          <label className={styles.formLabel}>Sobrenome</label>
+          <input className={styles.formInput} name="lastname" value={userData.lastname} onChange={handleChange} />
+        </div>
       )}
 
-      <label>
-        {isTutor ? "CPF" : "CNPJ"}
-        <input name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} maxLength="14" />
-      </label>
-      {/* Exibe o erro de validação para o campo CPF/CNPJ */}
-      {validationErrors.cpfOrCnpj && <p style={{ color: "red" }}>{validationErrors.cpfOrCnpj}</p>}
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>{isTutor ? "CPF" : "CNPJ"}</label>
+        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.cpfOrCnpj })} name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} maxLength="14" />
+        {validationErrors.cpfOrCnpj && <p className={styles.errorMessage}>{validationErrors.cpfOrCnpj}</p>}
+      </div>
 
-      <label>
-        {isTutor ? "Data de Nascimento" : "Data de Fundação"}
-        <input type="date" name="birthOrFoundationDate" value={userData.birthOrFoundationDate} onChange={handleChange} />
-      </label>
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>{isTutor ? "Data de Nascimento" : "Data de Fundação"}</label>
+        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.birthOrFoundationDate })} type="date" name="birthOrFoundationDate" value={userData.birthOrFoundationDate} onChange={handleChange} />
+        {validationErrors.birthOrFoundationDate && <p className={styles.errorMessage}>{validationErrors.birthOrFoundationDate}</p>}
+      </div>
 
-      <label>
-        Telefone
-        <input type="tel" name="phone" placeholder="(51) 9999-9999" value={userData.phone} onChange={handleChange} />
-      </label>
-       {validationErrors.phone && <p style={{ color: "red" }}>{validationErrors.phone}</p>}
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>Telefone</label>
+        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.phone })} type="tel" name="phone" placeholder="(XX) XXXXX-XXXX" value={userData.phone} onChange={handleChange} />
+        {validationErrors.phone && <p className={styles.errorMessage}>{validationErrors.phone}</p>}
+      </div>
     </>
   );
 }

@@ -61,17 +61,17 @@ export function validateUser(userData, confirmFields, userType) {
     if(userData.password){
         const passwordError = passwordSchema.validate(userData.password, {details:true})
         if(passwordError.length>0){
-            errors.password = "A senha precisa ter: min. 8 caracteres, uma maiúscula, uma minúscula e um número."
+            errors.password = "A senha deve ter 8 caracteres, uma letra maiúscula, uma letra minúscula e um número."
         }
     }
     if(userData.password !== confirmFields.confirmPassword){
-        errors.confirmPassword = "As senhas nao coincidem"
+        errors.confirmPassword = "As senhas não combinam"
     }
     if (userData.email.length > 5 && userData.email !== confirmFields.confirmEmail) {
         errors.email = "Os e-mails não coincidem.";
     }
-
-    if(!userData.name.trim())errors.name="Nome é obrigatório"
+    
+  
 
     return errors;
 }

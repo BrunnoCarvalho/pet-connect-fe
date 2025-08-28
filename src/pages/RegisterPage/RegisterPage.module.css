@@ -1,0 +1,151 @@
+
+*{
+    margin: 0px;
+}
+
+
+/* --- Layout Principal --- */
+.pageContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #E8EFFF; /* Cor de fundo clara do design */
+}
+
+/* --- Painel da Esquerda (Azul) --- */
+.infoPanel {
+  flex: 1;
+  background-color: #4069CD; /* Azul principal do design */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+.infoTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.illustration {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Painel da Direita (Formulário) --- */
+.formPanel {
+  flex: 1.5; /* Dando um pouco mais de espaço para o formulário */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto; /* Permite scroll se o formulário for grande */
+}
+.form {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* --- Grid dos Campos do Formulário --- */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Cria duas colunas de tamanho igual */
+  gap: 1rem 1.5rem; /* Espaçamento vertical e horizontal */
+  margin-bottom: 1.5rem;
+}
+
+/* --- Estilos dos Campos (Label + Input) --- */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+.formLabel {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: #4069CD;
+  font-weight: 500;
+}
+.formInput {
+  padding: 0.75rem 1rem;
+  border: 2px solid #4069CD;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.formInput:focus {
+  outline: none;
+  border-color:#4069CD;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* --- Estilos para Erros --- */
+.inputError {
+  border-color: #EF4444 !important; 
+}
+.errorMessage {
+  color: #EF4444;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* --- Checkbox e Botão --- */
+.checkboxGroup {
+  grid-column: 1 / -1; /* Ocupa as duas colunas */
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+.checkboxInput {
+  margin-right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+.submitButton {
+margin-left: 25%;
+  width: 341px;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 15rem;
+  background-color: #325EC9;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  grid-column: 1 / -1; /* Ocupa as duas colunas */
+}
+.submitButton:hover:not(:disabled) {
+  background-color: #2563EB;
+}
+.submitButton:disabled {
+  background-color: #9CA3AF;
+  cursor: not-allowed;
+}
+
+/* --- REGRAS DE RESPONSIVIDADE --- */
+@media (max-width: 1024px) {
+  .pageContainer {
+    flex-direction: column;
+    height: auto;
+  }
+  .infoPanel {
+    flex: none;
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .infoPanel {
+    display: none;
+  }
+  .formPanel {
+    padding: 1.5rem 1rem;
+  }
+  .formGrid {
+    grid-template-columns: 1fr; /* Muda o grid para ter apenas uma coluna */
+  }
+}
