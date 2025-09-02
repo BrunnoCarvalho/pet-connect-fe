@@ -52,10 +52,7 @@ export function RegisterPage() {
             />
           </div>
 
-          <div className={styles.checkboxGroup}>
-            <input id="terms" type="checkbox" className={styles.checkboxInput} />
-            <label htmlFor="terms" className={styles.checkboxLabel}>Termo de responsabilidade</label>
-          </div>
+  
 
           <button type="submit" className={styles.submitButton} disabled={registration.loading || cepLoading}>
             {registration.loading || cepLoading ? "Carregando..." : "Cadastrar"}

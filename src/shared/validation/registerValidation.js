@@ -28,12 +28,12 @@ function validateCNPJ(cnpjValue) {
   return null;
 }
 
-export function validateUser(userData, confirmFields, userType) {
+export function validateUser(userData, confirmFields, userType,context='submit') {
     const errors = {}; // Sempre começa com um objeto vazio
-      const cpfOrCnpj = String(userData.cpfOrCnpj).replace(/\D/g, '');
+     const cpfOrCnpj = String(userData.cpfOrCnpj).replace(/\D/g, '');
       const phone = String(userData.phone).replace(/\D/g, '')
-    // Validação de CPF/CNPJ
-    // Verifica apenas se o campo foi preenchido o suficiente
+
+  if(context==='realtime'|| context === 'submit'){
      if (userType === 'tutor') {
         if (cpfOrCnpj.length > 0) {
             if (cpfOrCnpj.length !== 11) {
@@ -70,7 +70,13 @@ export function validateUser(userData, confirmFields, userType) {
     if (userData.email.length > 5 && userData.email !== confirmFields.confirmEmail) {
         errors.email = "Os e-mails não coincidem.";
     }
-    
+  } 
+   if (context === 'submit') {
+        if (!userData.name.trim()) errors.name = "O nome é obrigatório.";
+        if (!userData.email.trim()) errors.email = "O e-mail é obrigatório.";
+        if (!cpfOrCnpj.trim()) errors.cpfOrCnpj = "O CPF/CNPJ é obrigatório.";
+        if (!phone.trim()) errors.phone = "O telefone é obrigatório.";
+   }
   
 
     return errors;

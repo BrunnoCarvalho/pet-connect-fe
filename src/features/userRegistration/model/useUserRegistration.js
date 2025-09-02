@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { User } from "../../../entities/user/model/User";
 import { userApi } from "../../../entities/user/model/userApi";
 import { validateUser } from "../../../shared/validation/registerValidation";
+import { cnpj } from "cpf-cnpj-validator";
 
 const initialConfirmatinFields = {
     confirmEmail: "",
@@ -16,16 +17,17 @@ export function useUserRegistration() {
     const [loading, setLoading] = useState(false);
     const [validationErrors, setValidationErrors] = useState({});
     const [submissionError, setSubmissionError] = useState(null);
-
+    const[submissionSuccess, setSubmissionSuccess]= useState(false)
     useEffect(() => {
-        const newErrors = validateUser(userData, confirmFields,userData.type);
-        setValidationErrors(currentErrors => {
-            if (JSON.stringify(newErrors) !== JSON.stringify(currentErrors)) {
-                return newErrors;
-            }
-            return currentErrors;
-        });
-    }, [userData, confirmFields]);
+        const realtimeErrors = validateUser(userData, confirmFields,userData.type, 'realtime');
+        setValidationErrors(currentErrors=>({
+            ...currentErrors,
+            cpfOrCnpj: realtimeErrors.cpfOrCnpj,
+            email:realtimeErrors.email,
+            password: realtimeErrors.confirmPassword,
+            confirmPassword:realtimeErrors.confirmPassword,
+        }));
+    }, [userData.cpfOrCnpj, userData.email, confirmFields.confirmEmail, userData.password, confirmFields.confirmPassword, userData.type, userData, confirmFields]);
 
     const handleChange = useCallback((event) => {
         const { name, value } = event.target;
@@ -64,8 +66,9 @@ export function useUserRegistration() {
     const submitForm = async (event, userType) => {
         event.preventDefault();
         setSubmissionError(null);
+        setSubmissionSuccess(false)
         const userToSend = { ...userData, type: userType };
-        const finalErrors = validateUser(userToSend, confirmFields);
+        const finalErrors = validateUser(userToSend, confirmFields, userType);
         
         if (Object.keys(finalErrors).length > 0) {
             setValidationErrors(finalErrors);
@@ -76,6 +79,7 @@ export function useUserRegistration() {
             setLoading(true);
             setValidationErrors({});
             //await userApi.register(userToSend)
+            setSubmissionSuccess(true)
             setUserData(User);
             setConfirmFields(initialConfirmatinFields);
         } catch (err) {
@@ -85,5 +89,5 @@ export function useUserRegistration() {
         }
     };
 
-    return { userData, confirmFields, handleChange, handleConfirmChange, handleAddressChange, submitForm, loading, validationErrors, submissionError, handleFullAddressUpdate };
+    return { userData, confirmFields, handleChange, handleConfirmChange, handleAddressChange, submitForm, loading, validationErrors, submissionError, handleFullAddressUpdate,submissionSuccess};
 }
