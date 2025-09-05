@@ -76,6 +76,7 @@ export function validateUser(userData, confirmFields, userType,context='submit')
         if (!userData.email.trim()) errors.email = "O e-mail é obrigatório.";
         if (!cpfOrCnpj.trim()) errors.cpfOrCnpj = "O CPF/CNPJ é obrigatório.";
         if (!phone.trim()) errors.phone = "O telefone é obrigatório.";
+         if (!userData.password.trim()) errors.password= "A senha é obrigatoria";
    }
   
 

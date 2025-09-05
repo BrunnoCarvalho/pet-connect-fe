@@ -14,7 +14,7 @@ export function RegisterPage() {
   const cepToFetch = registration.userData.address.cep.replace(/\D/g, '');
   const { loading: cepLoading, error: cepError } = useCep(cepToFetch, registration.handleFullAddressUpdate);
   
-  const simulatedType = "tutor";
+  const simulatedType = "ong";
 
   return (
     <div className={styles.pageContainer}>

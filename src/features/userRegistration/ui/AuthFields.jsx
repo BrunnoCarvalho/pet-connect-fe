@@ -7,6 +7,7 @@ export function AuthFields({ userData, confirmFields, handleChange, handleConfir
       <div className={styles.formGroup}>
         <label className={styles.formLabel}>E-mail</label>
         <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.email })} type="email" name="email" value={userData.email} onChange={handleChange} />
+         {validationErrors.email && <p className={styles.errorMessage}>{validationErrors.email}</p>}
       </div>
 
       <div className={styles.formGroup}>

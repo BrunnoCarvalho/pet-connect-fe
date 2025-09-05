@@ -16,7 +16,7 @@ import { Address } from "./Address";
  */
 
 export const User = {
-    type: "tutor",
+    type: "",
     name: "",
     lastname: "",
     email: "",

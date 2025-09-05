@@ -7,7 +7,7 @@ export function UserSpecificFields({ userType, userData, handleChange, validatio
   return (
     <>
       <div className={styles.formGroup}>
-        <label className={styles.formLabel}>{isTutor ? "Nome" : (userType === "ong" ? "Nome da ONG" : "Nome da Clínica")}</label>
+        <label className={styles.formLabel}>{isTutor ? "Nome" : (userType === "clinica" ?  "Nome da Clinica" : "Nome da ONG")}</label>
         <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.name })} name="name" value={userData.name} onChange={handleChange} />
         {validationErrors.name && <p className={styles.errorMessage}>{validationErrors.name}</p>}
       </div>

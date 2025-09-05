@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { User } from "../../../entities/user/model/User";
 import { userApi } from "../../../entities/user/model/userApi";
 import { validateUser } from "../../../shared/validation/registerValidation";
-import { cnpj } from "cpf-cnpj-validator";
+
 
 const initialConfirmatinFields = {
     confirmEmail: "",
