@@ -4,7 +4,6 @@ import { useRefreshToken } from "./useRefreshToken";
 import { axiosPrivate } from "../../../../shared/api/axiosPrivate";
 
 export default function useAxiosPrivate() {
-
     const refresh = useRefreshToken();
     const { token } = useAuth();
     
@@ -25,7 +24,7 @@ export default function useAxiosPrivate() {
             async (error) => {
                 const prevRequest = error?.config;
 
-                if (!prevRequest.sent) {
+                if (error?.response?.status === 403 && !prevRequest.sent) {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
 
@@ -40,7 +39,7 @@ export default function useAxiosPrivate() {
 
         return () => {
             axiosPrivate.interceptors.request.eject(requestIntercept);
-            axiosPrivate.interceptors.response.eject(requestIntercept);
+            axiosPrivate.interceptors.response.eject(responseIntercept);
         };
     }, [token, refresh]);
     

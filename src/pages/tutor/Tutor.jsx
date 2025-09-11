@@ -12,7 +12,7 @@ export default function Tutor() {
 
   return (
     <div className="p-4">
-      <h1 className="text-x1">Tutor de Pet Page</h1>
+      <h1 className="text-xl">Tutor de Pet Page</h1>
       <h2 className="text-xl">Bem-vindo, {user?.name}</h2> 
       <button
         onClick={logout}

@@ -13,10 +13,11 @@ export function AuthProvider ({ children }){
     useEffect(() => {
         const savedToken = localStorage.getItem("token");
         const savedUser = localStorage.getItem("user");
-        if(savedToken){
+
+        if (savedToken) {
             setToken(savedToken);
         }
-        if(savedUser){
+        if (savedUser) {
             setUser(JSON.parse(savedUser))
         }
 
@@ -46,7 +47,7 @@ export function AuthProvider ({ children }){
         localStorage.removeItem("user")
     }
 
-    const value = useMemo(() => ({ user, token, loading, login, logout, setToken }), [user, token])
+    const value = useMemo(() => ({ user, token, loading, login, logout, setToken }), [user, token, loading])
 
     return (
         <AuthContext.Provider value={ value }>
@@ -57,6 +58,8 @@ export function AuthProvider ({ children }){
 
 export function useAuth() {
     const ctx = useContext(AuthContext)
-    if(!ctx) throw new Error("useAuth deve ser usado dentro de <AuthProvider>")
+    if(!ctx) {
+        throw new Error("useAuth deve ser usado dentro de <AuthProvider>")
+    }
     return ctx;
 }
