@@ -58,6 +58,7 @@ export function AddressFields({ userData, handleAddressChange, validationErrors 
           name="address.uf" 
           value={userData.address.uf} 
           onChange={(e) => handleAddressChange("uf", e.target.value)} 
+          placeholder='Ex: RS'
         />
         {validationErrors.uf && <p className={styles.errorMessage}>{validationErrors.uf}</p>}
       </div>
