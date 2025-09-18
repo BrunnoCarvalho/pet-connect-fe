@@ -78,7 +78,7 @@ export function useUserRegistration() {
         try {
             setLoading(true);
             setValidationErrors({});
-            //await userApi.register(userToSend)
+            await userApi.register(userToSend)
             setSubmissionSuccess(true)
             setUserData(User);
             setConfirmFields(initialConfirmatinFields);
