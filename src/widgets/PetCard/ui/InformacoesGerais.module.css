@@ -1,0 +1,121 @@
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+  padding: 0 32px 32px;
+  background-color:#E8EFFF;
+  min-height: 500px; /* ocupa toda a altura da tela */
+  height: auto;
+}
+
+/* Campos à esquerda */
+.fieldGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* Textareas à direita */
+.textAreaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.label {
+  margin-bottom: 4px;
+  display: block;
+  color: #123384;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 111%;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px solid #123384;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #1A1A1A;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.textArea {
+  width: 100%;
+  height: 120px;
+  resize: none;
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px solid #123384;
+  /* azul como padrão */
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #1A1A1A;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttonGroup {
+  grid-column: 1 / -1;
+  /* ocupa todas as colunas da grid */
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.edit {
+  width: 129px;
+  height: 56px;
+
+  border-radius: 8px;
+  border: 1px solid #123384;
+
+  background-color: #FFF;
+  color: #4320F0;
+
+  font-family: Roboto, sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+
+.save {
+  width: 129px;
+  height: 56px;
+  border-radius: 8px;
+  border: 1px solid #123384;
+  background-color: #F0F0F0;
+  color: #999;
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+input[readonly],
+textarea[readonly] {
+  background-color: #DDE6F2;
+  color: #666;
+  border: 2px solid #CCC;
+  box-shadow: none;
+  cursor: default;
+}

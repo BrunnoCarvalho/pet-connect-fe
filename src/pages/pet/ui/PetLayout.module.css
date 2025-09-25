@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.page {
+  background-image: url("/assets/background3.jpg");
+  background-repeat: repeat;
+  background-size: 800px auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow:0 12px 32px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 900px;
+  padding: 0;
+  overflow: hidden;
+}
+
+

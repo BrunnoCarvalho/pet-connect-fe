@@ -1,0 +1,28 @@
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #4320F0;
+  padding: 20px 0 0 0;
+}
+
+.tab {
+  padding: 15px 20px;
+  border-radius: 12px 12px 0 0;
+  background-color: #415C9D;
+  color: white;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.active {
+  background-color: #E8EFFF;
+  color: #123384;
+  text-decoration: none;
+}
+
+
+

@@ -1,8 +1,40 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { PetLayout } from '../pages/pet/ui/PetLayout';
+import { HistoricoClinico } from '../widgets/PetCard/ui/HistoricoClinico';
+import { InformacoesGerais } from '../widgets/PetCard/ui/InformacoesGerais';
+import { Vacinas } from '../widgets/PetCard/ui/Vacinas';
+import hunterImg from './Hunter.png';
+
+const pet = {
+  name: 'Hunter',
+  id: '1',
+  birthdate: '20015-10-20',
+  microchipNumber: '080077889',
+  sex: 'Macho',
+  species: 'Cachorro',
+  weight: '90kg',
+  breed: 'Labrador',
+  tutorName: 'Simone',
+  description: 'Brincalhão e gordinho sapeca.',
+  healthNotes: 'Contém alergia ao medicamento xxx. Já foi realizada castração. Realizou uma cirurgia na pata direita.',
+  imageUrl: hunterImg
+};
+
 function App() {
   return (
-    <>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Navigate to={`/pet/${pet.id}/informacoes`} />} />
+
+
+      <Route path="/pet/:id" element={<PetLayout pet={pet} />}>
+        <Route index element={<Navigate to="informacoes" />} />
+        <Route path="informacoes" element={<InformacoesGerais />} />
+        <Route path="vacinas" element={<Vacinas />} />
+        <Route path="historico" element={<HistoricoClinico />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
+

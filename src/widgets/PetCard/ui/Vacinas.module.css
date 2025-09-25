@@ -1,0 +1,7 @@
+.container {
+  display: grid;
+  background-color:#E8EFFF;
+  min-height: 600px; /* ocupa toda a altura da tela */
+  height: auto;
+  /* novo padding interno */
+}
