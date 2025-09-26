@@ -1,14 +1,8 @@
-
 import styles from './UserTypeCarousel.module.css';
-import useEmblaCarousel from 'embla-carousel-react';
 import { userTypes } from '../../../entities/userType';
-export function UserTypeCarousel({ onSlideSelect,activeIndex }) {
-  const [emblaRef] = useEmblaCarousel({
-    align: 'center',
-    containScroll: 'trimSnaps',
-    loop: true,
-  })
 
+// O componente agora recebe a ref do hook
+export function UserTypeCarousel({ emblaRef, activeIndex, onSlideClick }) {
   return (
     <div className={styles.embla} ref={emblaRef}>
       <div className={styles.emblaContainer}>
@@ -16,6 +10,8 @@ export function UserTypeCarousel({ onSlideSelect,activeIndex }) {
           <div 
             className={`${styles.emblaSlide} ${index === activeIndex ? styles.emblaSlideIsActive : ''}`} 
             key={userType.type}
+            // NOVO: Adicionamos o onClick aqui
+            onClick={() => onSlideClick(index)} 
           >
             <div className={styles.slideCard}>
               <img src={userType.image} alt={userType.title} className={styles.slideImage} />
@@ -27,4 +23,3 @@ export function UserTypeCarousel({ onSlideSelect,activeIndex }) {
     </div>
   );
 }
-

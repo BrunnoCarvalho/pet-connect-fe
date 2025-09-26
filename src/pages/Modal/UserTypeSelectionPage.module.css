@@ -1,0 +1,30 @@
+/* Estilos da página que orquestra o widget */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color:#4320F0 ;
+  overflow: hidden;
+}
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.embla {
+  flex-grow: 1;
+}
+
+.navButton {
+  /* ... estilos dos botões de navegação ... */
+}
+
+.selectButton {
+  /* ... estilos do botão de selecionar ... */
+}
