@@ -1,0 +1,199 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #3B22E6;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+ .pet-registration-page {
+    display: flex;
+    height: 100vh;
+}
+
+.left-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-grow: 1;
+    max-width: 580px;
+}
+
+.left-container img {
+    width: 100%;
+    height: auto;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border-radius: 15px;
+    margin: 20px 0 20px 120px;
+    padding: 10px 40px 30px 25px;
+    max-width: 530px;
+    min-width: 350px;   
+    height: auto;
+    max-height: 900px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.form-header {
+    display: flex;
+    justify-content: center;
+}
+
+.form-header img {
+    width: 138px;
+    height: 138px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #123384;
+}
+
+.pet-form {
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-field label {
+    font-size: 1rem;
+    color: #222;
+    font-weight: 500;
+    font-size: 18px;
+    font-style: normal;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    border: 2px solid #123384;
+    border-radius: 8px;
+    padding: 8px 12px;
+    height: 36px;
+    width: 100%;    
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+    background: #FFF;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border: 2px solid #6C63FF;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.form-group-inline .form-field {
+    flex: 1 1 1;
+    min-width: 80px;
+}
+
+.form-group-inline .form-field input,
+.form-group-inline .form-field select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    height: 56px;
+}
+
+.form-group-inline .form-field {
+    flex: 1;
+    min-width: 0; 
+}
+
+.form-field textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-button {
+    margin-top: 18px;
+    background: #3B6BE6;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 14px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: center;
+}
+
+.submit-button:hover {
+    background: #2a4db7;
+}
+
+@media (max-width: 1024px) {
+    .left-container {
+        display: none;
+    }
+    .pet-registration-page {
+        flex-direction: center;
+    }
+    .form-group-inline {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 600px) {
+    .form-container {
+        max-width: 98vw;
+        min-width: 0;
+        margin: 10px 1vw;
+        padding: 10px 4vw 20px 4vw;
+        box-sizing: border-box;
+    }
+    .pet-registration-page {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        min-height: 100vh;
+    }
+    .form-header img {
+        width: 90px;
+        height: 90px;
+    }
+    .form-group-inline {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .form-group-inline .form-field {
+        flex: 1 1 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .form-group-inline .form-field.input-sexo {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+    .submit-button {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .pet-registration-page::before {
+       display: none;
+    }
+}
