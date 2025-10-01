@@ -1,4 +1,4 @@
-import styles from './UserTypeCarousel.module.css';
+import styles from '../Model/UserTypeCarousel.module.css';
 import { userTypes } from '../../../entities/userType';
 
 // O componente agora recebe a ref do hook

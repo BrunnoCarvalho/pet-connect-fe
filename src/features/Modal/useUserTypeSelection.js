@@ -7,7 +7,7 @@ export function useUserTypeSelection() {
     align: 'center',
     containScroll: 'trimSnaps',
     loop: true,
-    startIndex: 1, // Começar no slide 'Tutor'
+    startIndex: 1, 
   });
 
   const [activeIndex, setActiveIndex] = useState(1);
@@ -29,7 +29,7 @@ export function useUserTypeSelection() {
     return () => emblaApi.off('select', onSelect);
   }, [emblaApi, onSelect]);
 
-  // NOVO: Função para rolar para um slide específico
+
   const handleSlideClick = useCallback((index) => {
     if (emblaApi) {
       emblaApi.scrollTo(index);
@@ -48,6 +48,6 @@ export function useUserTypeSelection() {
     scrollPrev, 
     scrollNext, 
     handleConfirmSelection,
-    handleSlideClick // NOVO: Retornamos a função para o slide
+    handleSlideClick
   };
 }
