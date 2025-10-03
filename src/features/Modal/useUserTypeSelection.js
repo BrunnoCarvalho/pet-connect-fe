@@ -21,7 +21,7 @@ export function useUserTypeSelection() {
     const newIndex = emblaApi.selectedScrollSnap();
     setActiveIndex(newIndex);
     setSelectedType(userTypes[newIndex]);
-  }, [emblaApi]); // userTypes não precisa estar aqui se for uma constante estável
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
