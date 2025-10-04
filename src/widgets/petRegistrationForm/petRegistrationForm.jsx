@@ -25,20 +25,36 @@ export const PetRegistrationForm = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPetData((prev) => ({ ...prev, image: reader.result }));
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(file); 
+    console.log(file);
+    if (file) {
+      setPetData((prev) => ({ ...prev, image: file }));
+      setImagePreview(URL.createObjectURL(file));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+
+    if (petData.image instanceof File) {
+      formData.append('image', petData.image);
+      console.log('handleSubmit - appended image file:', petData.image.name);
+    }
+
+    const petPayload = { ...petData };
+    delete petPayload.image;
+    formData.append('pet', JSON.stringify(petPayload));
+
+    for (const [key, value] of formData.entries()) {
+      if (value instanceof File) {
+        console.log(`handleSubmit - formData entry: ${key} -> File(name=${value.name}, size=${value.size})`);
+      } else {
+        console.log(`handleSubmit - formData entry: ${key} ->`, value);
+      }
+    }
     try {
-      await handlePetRegistration(petData, false);
+      await handlePetRegistration(formData, true); 
       alert('Pet cadastrado com sucesso!');
     } catch (error) {
       console.error(error);
