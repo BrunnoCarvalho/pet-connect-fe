@@ -1,4 +1,4 @@
-export const vaccine = 
+export const Vaccine = 
     {
         id : null,
         name : "",
