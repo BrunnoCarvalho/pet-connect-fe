@@ -5,6 +5,7 @@ import Tutor from "../pages/tutor/Tutor";
 import Ong from "../pages/ong/ong";
 import Clinica from "../pages/clinica/Clinica";
 import LoginPage from "../pages/login/loginPage";
+import PasswordRecoveryPage from "../features/passwordRecovery/ui/PasswordRecoveryForm";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />}/>
+            <Route path="/password-recovery" element={<PasswordRecoveryPage />} />
             
             <Route element={<ProtectedRoute />}>
                 <Route path="/tutor" element={<Tutor />} />

@@ -40,7 +40,7 @@
         }
 
         function handleNavigateToForgotPassword() {
-            console.log("Chama ForgotPasswordPage") 
+            navigate('/password-recovery');
         }
 
         function handleNavigateToRegister() {
