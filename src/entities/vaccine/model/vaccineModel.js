@@ -1,8 +1,8 @@
-export const Vaccine = 
+export const VaccineModel  = 
     {
-        id : null,
+        petId: "",
         name : "",
         aplicationDate : "",
         nextDoseDate: "",
-        lot: "",
+        lot: "",        
     }

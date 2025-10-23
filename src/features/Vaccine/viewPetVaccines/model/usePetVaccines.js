@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { vaccineApi } from "../../../entities/vaccine/model/vaccineApi";
+//import { vaccineApi } from "../../../../entities/vaccine/model/vaccineApi";
  
 
 export function usePetVaccines(petId){
@@ -13,9 +13,8 @@ const fetchPetVaccines = useCallback( async () => {
     try{
         const data = await vaccineApi.fetchPetVaccines(petId)
         setVaccines(data)
-    }catch(error){
-        error('Erro ao buscar vacinas')
-        setError(error)
+    }catch(err){
+        setError('Falha ao carregar vacinas.');
     }finally{
         setLoading(false)
     }
