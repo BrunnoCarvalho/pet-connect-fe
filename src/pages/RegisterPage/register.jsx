@@ -20,6 +20,8 @@ export function RegisterPage() {
   const simulatedType = location.state?.type;
   console.log(location.state?.type)
   //const simulatedType = "tutor";
+  registration.userData.type = simulatedType;
+
 
   return (
     <div className={styles.pageContainer}>

@@ -21,7 +21,7 @@ export function UserSpecificFields({ userType, userData, handleChange, validatio
 
       <div className={styles.formGroup}>
         <label className={styles.formLabel}>{isTutor ? "CPF" : "CNPJ"}</label>
-        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.cpfOrCnpj })} name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} maxLength="14" />
+        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.cpfOrCnpj })} name="cpfOrCnpj" value={userData.cpfOrCnpj} onChange={handleChange} maxLength="14" placeholder={isTutor ? "12345678900" : "12345678000100"}/>
         {validationErrors.cpfOrCnpj && <p className={styles.errorMessage}>{validationErrors.cpfOrCnpj}</p>}
       </div>
 
@@ -33,7 +33,7 @@ export function UserSpecificFields({ userType, userData, handleChange, validatio
 
       <div className={styles.formGroup}>
         <label className={styles.formLabel}>Telefone</label>
-        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.phone })} type="tel" name="phone" placeholder="(XX) XXXXX-XXXX" value={userData.phone} onChange={handleChange} />
+        <input className={cn(styles.formInput, { [styles.inputError]: validationErrors.phone })} type="tel" name="phone" placeholder="51999999999" value={userData.phone} onChange={handleChange} />
         {validationErrors.phone && <p className={styles.errorMessage}>{validationErrors.phone}</p>}
       </div>
     </>
