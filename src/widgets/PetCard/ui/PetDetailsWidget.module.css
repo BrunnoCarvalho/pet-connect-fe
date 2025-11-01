@@ -1,0 +1,87 @@
+/* src/widgets/PetDetailsWidget/ui/PetDetailsWidget.module.css */
+
+.widget {
+  background-color: #f7f7f7; /* Cor de fundo principal do widget */
+  padding: 20px;
+  border-radius: 10px;
+  font-family: Arial, sans-serif; /* Ajuste para sua fonte real (ex: Poppins, Montserrat) */
+  color: #333;
+}
+
+/* Estilos para o container das abas de navegação (Informações gerais, Vacinas, Histórico clínico) */
+.navTabs {
+  display: flex;
+  margin-bottom: 25px; /* Espaço abaixo das abas */
+  background-color: #e0e0e0; /* Fundo mais claro para o bloco das abas */
+  border-radius: 10px; /* Bordas arredondadas para o container */
+  padding: 5px; /* Espaçamento interno dentro do container das abas */
+}
+
+/* Estilos para cada aba individual */
+.navTab {
+  flex: 1; /* Faz com que cada aba ocupe um espaço igual */
+  text-align: center;
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555; /* Cor do texto das abas inativas */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 8px; /* Bordas arredondadas para as abas individuais */
+  display: flex; /* Para centralizar texto e ícone */
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaçamento entre texto e ícone */
+  user-select: none; /* Impede seleção de texto */
+}
+
+/* Estilos para a aba ativa */
+.navTabActive {
+  background-color: #5B48F7; /* Cor de fundo forte para a aba ativa (azul na imagem) */
+  color: white; /* Texto branco na aba ativa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+}
+
+/* Container do botão "Adicionar" para alinhá-lo à direita */
+.addVaccineButtonContainer {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão "Adicionar" à direita */
+  margin-bottom: 20px; /* Espaço entre o botão e o cabeçalho/lista de vacinas */
+}
+
+/* Estilos para o botão "Adicionar" */
+.addVaccineButton {
+  background-color: #5B48F7; /* Cor de fundo do botão (azul forte na imagem) */
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px; /* Bordas bem arredondadas, como na imagem */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.addVaccineButton:hover {
+  background-color: #4c39e0; /* Tom mais escuro no hover */
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 600px) {
+  .navTabs {
+    flex-wrap: wrap; /* Permite que as abas quebrem a linha */
+    padding: 3px;
+    gap: 3px;
+  }
+  .navTab {
+    padding: 10px 5px;
+    font-size: 14px;
+    gap: 4px;
+  }
+  .addVaccineButtonContainer {
+    justify-content: center; /* Centraliza o botão em telas pequenas */
+  }
+  .addVaccineButton {
+    width: 90%; /* Ocupa quase a largura total */
+  }
+}

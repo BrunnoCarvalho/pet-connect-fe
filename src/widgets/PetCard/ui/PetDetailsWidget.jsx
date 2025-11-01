@@ -43,9 +43,9 @@ const handleDeleteResquest = useCallback(async(vaccineId)=>{
 
   return (
     <div className={styles.widget}>
-      <h2>Carteira de Vacinação</h2>
-      <button onClick={handleAddRequest}>Adicionar Vacina</button>
-
+        <button onClick={handleAddRequest} className={styles.addButton}>
+              Adicionar
+          </button>
       {showForm && (
         <ManageVaccineForm 
           petId={petId}

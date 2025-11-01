@@ -22,7 +22,7 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
   return (
     <div className={styles.formOverlay}> 
       <div className={styles.formContainer}>
-        <h3>{isEditing ? 'Editar Vacina' : 'Adicionar Nova Vacina'}</h3>
+        <h3  className={styles.formHeader}>{isEditing ? 'Editar Vacina' : 'Adicionar Nova Vacina'}</h3>
         <form onSubmit={handleFormSubmit}>
      
           <div className={styles.formGroup}>
@@ -39,6 +39,17 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
             />
           </div>
           
+          <div className={styles.formGroup}>
+            <label htmlFor="nextDueDate">Próxima Dose:</label>
+            <input 
+              type="date" 
+              id="nextDueDate"
+              name="nextDueDate" 
+              value={formData.nextDueDate} 
+              onChange={handleChange} 
+              className={styles.inputField}
+            />
+          </div>
          
           <div className={styles.formGroup}>
             <label htmlFor="dateAdministered">Data de Aplicação:</label>
@@ -54,35 +65,11 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
           </div>
 
          
-          <div className={styles.formGroup}>
-            <label htmlFor="nextDueDate">Próxima Dose:</label>
-            <input 
-              type="date" 
-              id="nextDueDate"
-              name="nextDueDate" 
-              value={formData.nextDueDate} 
-              onChange={handleChange} 
-              className={styles.inputField}
-            />
-          </div>
 
-        
-          <div className={styles.formGroup}>
-            <label htmlFor="veterinarian">Veterinário / Clínica:</label>
-            <input 
-              type="text" 
-              id="veterinarian"
-              name="veterinarian" 
-              value={formData.veterinarian} 
-              onChange={handleChange} 
-              className={styles.inputField}
-              placeholder="Ex: Dr. João Silva"
-            />
-          </div>
 
          
           <div className={styles.formGroup}>
-            <label htmlFor="lot">Número do Lote:</label>
+            <label htmlFor="lot">Lote:</label>
             <input 
               type="text" 
               id="lot"
@@ -95,15 +82,8 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
           </div>
 
 
-          {/* Botões de Ação */}
+         
           <div className={styles.actions}>
-            <button 
-              type="submit" 
-              disabled={loading} 
-              className={styles.submitButton}
-            >
-              {loading ? 'Salvando...' : (isEditing ? 'Salvar Alterações' : 'Adicionar Vacina')}
-            </button>
             <button 
               type="button" 
               onClick={onCancel} 
@@ -111,6 +91,13 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
               className={styles.cancelButton}
             >
               Cancelar
+            </button>
+            <button 
+              type="submit" 
+              disabled={loading} 
+              className={styles.submitButton}
+            >
+              {loading ? 'Salvando...' : 'Salvar'}
             </button>
           </div>
         </form>
