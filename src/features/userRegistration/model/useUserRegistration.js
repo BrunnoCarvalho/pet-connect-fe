@@ -21,8 +21,10 @@ export function useUserRegistration() {
     const[submissionSuccess, setSubmissionSuccess]= useState(false)
 
     const navigate = useNavigate();
+        
     useEffect(() => {
-        const realtimeErrors = validateUser(userData, confirmFields,userData.type, 'realtime');
+        const realtimeErrors = validateUser(userData, confirmFields, 'realtime');
+
         setValidationErrors(currentErrors=>({
             ...currentErrors,
             cpfOrCnpj: realtimeErrors.cpfOrCnpj,
@@ -30,7 +32,7 @@ export function useUserRegistration() {
             password: realtimeErrors.confirmPassword,
             confirmPassword:realtimeErrors.confirmPassword,
         }));
-    }, [userData.cpfOrCnpj, userData.email, confirmFields.confirmEmail, userData.password, confirmFields.confirmPassword, userData.type, userData, confirmFields]);
+    }, [userData.cpfOrCnpj, userData.email, confirmFields.confirmEmail, userData.password, confirmFields.confirmPassword, userData, confirmFields]);
 
     const handleChange = useCallback((event) => {
         const { name, value } = event.target;

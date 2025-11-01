@@ -28,25 +28,28 @@ function validateCNPJ(cnpjValue) {
   return null;
 }
 
-export function validateUser(userData, confirmFields, userType,context='submit') {
+export function validateUser(userData, confirmFields,context='submit') {
     const errors = {}; // Sempre começa com um objeto vazio
      const cpfOrCnpj = String(userData.cpfOrCnpj).replace(/\D/g, '');
       const phone = String(userData.phone).replace(/\D/g, '')
-
+      
   if(context==='realtime'|| context === 'submit'){
-     if (userType === 'tutor') {
+     if (userData.type === 'tutor' ) {
         if (cpfOrCnpj.length > 0) {
             if (cpfOrCnpj.length !== 11) {
                 errors.cpfOrCnpj = "CPF deve ter 11 dígitos.";
+                
             } else {
                 const cpfError = validateCPF(cpfOrCnpj);
                 if (cpfError) errors.cpfOrCnpj = cpfError;
             }
         }
-    } else { // Para 'ong' e 'clinic'
+    } else {
+      console.log("o type e ",userData.type) // Para 'ong' e 'clinic'
         if (cpfOrCnpj.length > 0) {
             if (cpfOrCnpj.length !== 14) {
                 errors.cpfOrCnpj = "CNPJ deve ter 14 dígitos.";
+                console.log('CPF inválido')
             } else {
                 const cnpjError = validateCNPJ(cpfOrCnpj);
                 if (cnpjError) errors.cpfOrCnpj = cnpjError;
