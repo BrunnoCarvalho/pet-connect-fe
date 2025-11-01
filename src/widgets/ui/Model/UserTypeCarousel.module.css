@@ -1,0 +1,121 @@
+/* --- Estilos da Página --- */
+*{
+  margin: 0px;
+
+}
+  h1{
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif ;
+  }
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #4320F0; /* Roxo principal do design */
+  overflow: hidden;
+}
+
+/* --- Wrapper do Carrossel (incluindo botões) --- */
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Estilos do Carrossel (Embla) --- */
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+.emblaContainer {
+  display: flex;
+}
+.emblaSlide {
+  position: relative;
+  flex: 0 0 40%; /* Largura de cada slide */
+  min-width: 0;
+  padding: 0 1rem;
+  opacity: 0.4;
+  transform: scale(0.85);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.emblaSlideIsActive {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Estilos do Cartão do Slide --- */
+.slideCard {
+  background-color: white;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.slideImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
+.slideTitle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+/* --- Botões --- */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+  color: white;
+  font-size: 1.5rem;
+}
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.prevButton {
+  left: 0;
+}
+.nextButton {
+  right: 0;
+}
+.selectButton {
+  margin-top: 3rem;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 9999px;
+  background-color: #A7F3D0; /* Verde-água claro do design */
+  color: #064E3B;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.selectButton:hover {
+  transform: scale(1.05);
+}
