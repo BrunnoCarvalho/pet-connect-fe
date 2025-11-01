@@ -1,6 +1,6 @@
-   import tutor from '../assets/images/tutor.svg';
-import clinic from '../assets/images/clinica.svg';
+   import clinic from '../assets/images/clinica.svg';
 import ong from '../assets/images/ong.svg';
+import tutor from '../assets/images/tutor.svg';
 
    export const userTypes = [
   {

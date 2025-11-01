@@ -1,9 +1,10 @@
 // src/features/userRegistration/model/useUserRegistration.js
 
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { User } from "../../../entities/user/model/User";
-import { userApi } from "../../../entities/user/model/userApi";
 import { validateUser } from "../../../shared/validation/registerValidation";
+
+import { useNavigate } from "react-router-dom";
 
 
 const initialConfirmatinFields = {
@@ -18,6 +19,8 @@ export function useUserRegistration() {
     const [validationErrors, setValidationErrors] = useState({});
     const [submissionError, setSubmissionError] = useState(null);
     const[submissionSuccess, setSubmissionSuccess]= useState(false)
+
+    const navigate = useNavigate();
     useEffect(() => {
         const realtimeErrors = validateUser(userData, confirmFields,userData.type, 'realtime');
         setValidationErrors(currentErrors=>({
@@ -82,6 +85,7 @@ export function useUserRegistration() {
             setSubmissionSuccess(true)
             setUserData(User);
             setConfirmFields(initialConfirmatinFields);
+            navigate('/login')
         } catch (err) {
             setSubmissionError("Erro no cadastro do usuário. Tente novamente.");
         } finally {

@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { userTypes } from '../../entities/userType';
 
 export function useUserTypeSelection() {
@@ -9,6 +10,8 @@ export function useUserTypeSelection() {
     loop: true,
     startIndex: 1, 
   });
+  
+  const navigate = useNavigate();
 
   const [activeIndex, setActiveIndex] = useState(1);
   const [selectedType, setSelectedType] = useState(userTypes[1]);
@@ -38,7 +41,8 @@ export function useUserTypeSelection() {
 
 
   const handleConfirmSelection = () => {
-    console.log(`Usuário selecionou o tipo: ${selectedType.title}`);
+    console.log(`Usuário selecionou o tipo: ${selectedType.type}`);
+    navigate('/register', { state: { type: selectedType.type } })
     // Futuramente, aqui você navegará para a página de registro, passando o 'selectedType.type'
   };
 

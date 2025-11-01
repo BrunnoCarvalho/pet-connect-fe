@@ -1,20 +1,25 @@
 // src/pages/RegisterPage/register.jsx
-import { useUserRegistration } from "../../features/userRegistration/model/useUserRegistration";
+import illustrationUrl from '../../assets/illustration.svg';
 import { useCep } from "../../features/userRegistration/model/useCep";
+import { useUserRegistration } from "../../features/userRegistration/model/useUserRegistration";
 import styles from './RegisterPage.module.css';
-import illustrationUrl from '../../assets/illustration.svg'
 
 // Importando os componentes de UI
-import { UserSpecificFields } from "../../features/userRegistration/ui/UserSpecificFields";
 import { AddressFields } from "../../features/userRegistration/ui/AddressFields";
 import { AuthFields } from "../../features/userRegistration/ui/AuthFields";
+import { UserSpecificFields } from "../../features/userRegistration/ui/UserSpecificFields";
+
+import { useLocation } from 'react-router-dom';
 
 export function RegisterPage() {
   const registration = useUserRegistration();
   const cepToFetch = registration.userData.address.cep.replace(/\D/g, '');
   const { loading: cepLoading, error: cepError } = useCep(cepToFetch, registration.handleFullAddressUpdate);
-  
-  const simulatedType = "ong";
+
+  const location = useLocation();
+  const simulatedType = location.state?.type;
+  console.log(location.state?.type)
+  //const simulatedType = "tutor";
 
   return (
     <div className={styles.pageContainer}>
