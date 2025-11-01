@@ -8,6 +8,7 @@ import Ong from "../pages/ong/ong";
 import Tutor from "../pages/tutor/Tutor";
 import { ProtectedRoute } from "./router/ProtectedRoute";
 
+import { RegisterPage } from "../pages/RegisterPage/register";
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<LoginPage />}/>
             <Route path="/password-recovery" element={<PasswordRecoveryPage />} />
             <Route path ="/modal" element = {<UserTypeSelectionPage />} />
+            <Route path = "/register" element = {<RegisterPage/>} />
             
             <Route element={<ProtectedRoute />}>
                 <Route path="/tutor" element={<Tutor />} />
@@ -27,6 +29,7 @@ function App() {
           </Routes>        
         </BrowserRouter>
       </AuthProvider>
+
     </>
   )
 }
