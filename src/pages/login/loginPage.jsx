@@ -1,8 +1,8 @@
-    import "./loginPage.css"
-    import { useState } from "react"
-    import { useNavigate } from "react-router-dom";
-    import { useAuth } from "../../features/auth/model/auth"
-    import { handleLogin } from "../../features/auth/lib/handleLogin"
+    import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { handleLogin } from "../../features/auth/lib/handleLogin";
+import { useAuth } from "../../features/auth/model/auth";
+import "./loginPage.css";
 
     export function LoginPage() {
 
@@ -44,7 +44,7 @@
         }
 
         function handleNavigateToRegister() {
-            console.log("Chama RegisterPage")
+            navigate("/modal")
         }
 
         return (
