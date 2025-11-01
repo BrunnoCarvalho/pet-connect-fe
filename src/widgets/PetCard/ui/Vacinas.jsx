@@ -1,12 +1,13 @@
 import { useOutletContext } from "react-router-dom";
+import { PetDetailsWidget } from "../ui/PetDetailsWidget";
 import styles from './Vacinas.module.css';
 
 export function Vacinas() {
   const {pet} = useOutletContext()
-
+const petId = '123';
   return (
     <div className={styles.container}>
-      <h2>Vacinas do {pet.name}</h2>
+      {petId ? <PetDetailsWidget petId={petId} /> : <p>ID do pet não encontrado.</p>}
     </div>
   );
 }
