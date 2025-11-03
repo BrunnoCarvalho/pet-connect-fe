@@ -1,6 +1,21 @@
 # 🐾 PetConnect - Front-End
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-Este repositório contém o **front-end da aplicação PetConnect**, um sistema desenvolvido para facilitar o gerenciamento de pets e suas carteirinhas de vacinação.  
+Este repositório contém o **front-end da aplicação PetConnect**, um sistema desenvolvido para facilitar o gerenciamento de pets e suas carteirinhas de vacinação.
+
+## Arquitetura do Projeto
+
+O projeto segue uma **estrutura inspirada na arquitetura FSD (Feature-Sliced Design)**, organizada para facilitar manutenção e escalabilidade.  
+As pastas principais são:
+
+- **app** — configuração global da aplicação.
+- **assets** — imagens, ícones e fontes. 
+- **entities** — modelos de dados e lógica relacionada a objetos do domínio.  
+- **features** — funcionalidades independentes e reutilizáveis.  
+- **pages** — telas da aplicação.  
+- **shared** — utilitários reutilizáveis em todo o projeto.  
+- **widgets** — componentes compostos menores.
+
 
 ## Estrutura do Projeto
 
@@ -58,6 +73,11 @@ npm install
 npm run dev
 ```
 O projeto será executado localmente (geralmente em http://localhost:5173).
+
+## Back-End da Aplicação
+
+Para acessar e rodar o back-end da aplicação PetConnect, visite o repositório:
+[Back-End](https://github.com/Attonic/pet-connect-be)
 
 ---
 
