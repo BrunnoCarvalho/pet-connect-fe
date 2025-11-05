@@ -4,7 +4,7 @@ import styles from './PetVaccineList.module.css'
 import SortIcon from '../../../../app/flexas.svg';
 
 
-export function PetVaccineList({ petId, onEditVaccine, onDeleteVaccine, onAddVaccine }){
+export function PetVaccineList({ petId, onEditVaccine, onDeleteVaccine,}){
     const { vaccines, loading, error } = usePetVaccines(petId);
 
     if(loading){

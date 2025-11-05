@@ -22,7 +22,7 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
   return (
     <div className={styles.formOverlay}> 
       <div className={styles.formContainer}>
-        <h3  className={styles.formHeader}>{isEditing ? 'Editar Vacina' : 'Adicionar Nova Vacina'}</h3>
+        <h3  className={styles.formHeader}>{vaccineId ? 'Editar Vacina' : 'Adicionar Nova Vacina'}</h3>
         <form onSubmit={handleFormSubmit}>
      
           <div className={styles.formGroup}>
@@ -40,11 +40,11 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
           </div>
           
           <div className={styles.formGroup}>
-            <label htmlFor="nextDueDate">Próxima Dose:</label>
+            <label htmlFor="nextDoseDate">Próxima Dose:</label>
             <input 
               type="date" 
-              id="nextDueDate"
-              name="nextDueDate" 
+              id="nextDoseDate"
+              name="nextDoseDate" 
               value={formData.nextDueDate} 
               onChange={handleChange} 
               className={styles.inputField}
@@ -52,12 +52,12 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
           </div>
          
           <div className={styles.formGroup}>
-            <label htmlFor="dateAdministered">Data de Aplicação:</label>
+            <label htmlFor="aplicationDate">Data de Aplicação:</label>
             <input 
               type="date" 
-              id="dateAdministered"
-              name="dateAdministered" 
-              value={formData.dateAdministered} 
+              id="aplicationDate"
+              name="aplicationDate" 
+              value={formData.aplicationDate} 
               onChange={handleChange} 
               required 
               className={styles.inputField}

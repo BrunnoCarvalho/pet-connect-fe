@@ -6,9 +6,10 @@ import { vaccineApi } from '../../../entities/vaccine/model/vaccineApi'
 import { useCallback, useState } from 'react'
 
 export function PetDetailsWidget({petId}){
-    const{fetchVaccines} = usePetVaccines()
+    const{fetchPetVaccines} = usePetVaccines(petId)
 const [showForm,setShowForm] = useState(false)
 const [currentVaccineId, setCurrentVaccineId] = useState(null)
+const [error,setError] = useState(null)
 
 const handleAddRequest = useCallback(()=>{
     setShowForm(true)
@@ -27,15 +28,17 @@ const handleCancel = useCallback(()=>{
 const handleSuccess = useCallback(()=>{
     setShowForm(false)
     setCurrentVaccineId(null)
-    fetchVaccines()
-},[fetchVaccines])
+    fetchPetVaccines()
+    console.log('add vacines')
+},[fetchPetVaccines])
 
 const handleDeleteResquest = useCallback(async(vaccineId)=>{
     try{
         await vaccineApi.deleteVaccine(vaccineId)
-        fetchVaccines()
+        fetchPetVaccines()
     }catch(error){
-        console.error('Erro ao excluir vacina:', error)
+        setError(error.message)
+        console.log(error)
     }
 }, [])
 
@@ -51,6 +54,7 @@ const handleDeleteResquest = useCallback(async(vaccineId)=>{
           petId={petId}
           vaccineId={currentVaccineId}
           onSuccess={handleSuccess}
+          
           onCancel={handleCancel}
         />
       )}

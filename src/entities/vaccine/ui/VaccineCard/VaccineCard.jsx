@@ -17,10 +17,10 @@ export default function VaccineCard({ vaccine , onEdit, onDelete}) {
         <strong>Nome:</strong> {vaccine.name}
       </p>
       <p>
-        <strong>Data de Aplicação:</strong> {formatDate(vaccine.applicationDate)}
+        <strong>Data de Aplicação:</strong> {formatDate(vaccine.aplicationDate)}
       </p>
       <p>
-        <strong>Próxima Dose:</strong> {formatDate(vaccine.nextDosedate)}
+        <strong>Próxima Dose:</strong> {formatDate(vaccine.aplicationDate)}
       </p>
       <p>
         <strong>Lote:</strong> {vaccine.lot}

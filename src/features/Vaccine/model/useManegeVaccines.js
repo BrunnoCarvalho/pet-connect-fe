@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { vaccineApi } from "../../../entities/vaccine/model/vaccineApi";
 import { VaccineModel } from "../../../entities/vaccine/model/VaccineModel"
 export function useManageVaccine(petId, vaccineId=null){
-    const [ isEditing, setIsEditing] = useState(false)
+
     const [loading,setLoading]= useState(false)
     const [error,setError]= useState(null)
     const [formData, setFormData]=useState(VaccineModel)
@@ -10,7 +10,7 @@ export function useManageVaccine(petId, vaccineId=null){
 
   useEffect(() => {
     if (vaccineId) {
-      setIsEditing(true);
+      
       const fetchVaccine = async () => {
         setLoading(true);
         try {
@@ -29,7 +29,6 @@ export function useManageVaccine(petId, vaccineId=null){
       };
       fetchVaccine();
     } else {
-      setIsEditing(false);
       setFormData(VaccineModel);
     }
   }, [vaccineId]);
@@ -49,6 +48,7 @@ try {
     await vaccineApi.updateVaccine(vaccineId, formData);
   }else {
     await vaccineApi.addVaccine(petId, formData);
+    console.log('chamando api adicionando vacina')
   }
   return true
 } catch (err) {
@@ -58,8 +58,8 @@ try {
 } finally {
   setLoading(false);
 } 
-   },[petId, vaccineId, formData,isEditing])
+   },[petId, vaccineId, formData])
 
-return { formData, handleChange, handleSubmit, loading, error, isEdit: isEditing}
+return { formData, handleChange, handleSubmit, loading, error}
 
 }
