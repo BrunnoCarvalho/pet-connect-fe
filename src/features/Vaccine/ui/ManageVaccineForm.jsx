@@ -9,7 +9,6 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
     handleSubmit, 
     loading, 
     error, 
-    isEditing 
   } = useManageVaccine(petId, vaccineId);
 
   const handleFormSubmit = async (e) => {
@@ -45,7 +44,7 @@ export function ManageVaccineForm({ petId, vaccineId = null, onSuccess, onCancel
               type="date" 
               id="nextDoseDate"
               name="nextDoseDate" 
-              value={formData.nextDueDate} 
+              value={formData.nextDoseDate} 
               onChange={handleChange} 
               className={styles.inputField}
             />
